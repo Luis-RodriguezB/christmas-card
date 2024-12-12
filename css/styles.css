@@ -1,0 +1,427 @@
+:root {
+  --color-white: white;
+  --color-red: #6d1413;
+
+  --card-width: 300px;
+  --card-height: 380px;
+  --card-border: 5px solid white;
+
+  --star-bg: #f8ca00;
+  --star-form: polygon(
+    50% 0,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Mountains of Christmas', 'Great Vibes', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  background-image: url('../christmas-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/*================ CHRISTMAS CARD ================*/
+.card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+
+  .card {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: var(--color-white);
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 8px 0px;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 3s;
+
+    /*================ BUTTON OPEN/CLOSE CARD ================*/
+    input#open {
+      display: none;
+
+      &:checked ~ .card-front,
+      &:checked ~ .card-front_back {
+        transform: rotateY(-155deg);
+      }
+      &:checked ~ .card-front_back {
+        transition: .3s;
+        z-index: 5;
+      }
+    }
+
+    .open {
+      position: absolute;
+      width: var(--card-width);
+      height: var(--card-height);
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      background: transparent;
+      z-index: 6;
+    }
+
+    /*================ CARD FRONT ================*/
+    .card-front {
+      position: relative;
+      width: var(--card-width);
+      height: var(--card-height);
+      color: var(--color-white);
+      border: var(--card-border);
+      transform-origin: left;
+      transition: .3s;
+      overflow: hidden;
+      background: url('../bg-card.png') no-repeat center var(--color-red);
+      background-size: cover;
+
+      h1 {
+        text-align: center;
+        padding-top: 75px;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+    }
+
+    /*================ CARD FRONT-BACK ================*/
+    .card-front_back {
+      width: var(--card-width);
+      height: var(--card-height);
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: var(--card-border);
+      transform-origin: left;
+      transition: .2s;
+      background-color: var(--color-red);
+      overflow: hidden;
+      z-index: -1;
+
+      .leaves {
+        width: 100%;
+        height: 190px;
+        position: absolute;
+        top: -70px;
+        left: 0;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .tree {
+        width: 80%;
+        height: 300px;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+
+        .star,
+        .tree-piece,
+        .trunk {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .star {
+          width: 50px;
+          aspect-ratio: 1;
+          background: var(--star-bg);
+          clip-path: var(--star-form);
+          animation: starGlow 2s infinite ease-in-out;
+          top: -10px;
+          z-index: 4;
+        }
+
+        .tree-piece {
+          width: 0px;
+          height: 0px;
+          border-style: solid;
+          border-color: transparent transparent #037e17 transparent;
+
+          .light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            transition: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+            animation: changeColor 5s -2s linear infinite;
+
+            --color1: red;
+            --color2: yellow;
+            --color3: white;
+            --color4: blue;
+          }
+
+          &:nth-child(2) {
+            border-width: 0 60px 110px 60px;
+            bottom: 170px;
+            z-index: 3;
+
+            .light:nth-child(1) {
+              --color1: red;
+              --color2: green;
+              --color3: yellow;
+              --color4: blue;
+
+              right: -15px;
+              bottom: -50px;
+            }
+            .light:nth-child(2) {
+              --color1: orange;
+              --color2: purple;
+              --color3: cyan;
+              --color4: white;
+
+              right: 10px;
+              bottom: -90px;
+            }
+            .light:nth-child(3) {
+              --color1: pink;
+              --color2: gold;
+              --color3: lime;
+              --color4: violet;
+
+              left: 20px;
+              bottom: -100px;
+            }
+          }
+          &:nth-child(3) {
+            border-width: 0 90px 150px 90px;
+            bottom: 90px;
+            z-index: 2;
+
+            .light:nth-child(1) {
+              --color1: white;
+              --color2: coral;
+              --color3: magenta;
+              --color4: yellow;
+
+              left: 20px;
+              bottom: -110px;
+            }
+            .light:nth-child(2) {
+              --color1: lightblue;
+              --color2: lavender;
+              --color3: pink;
+              --color4: orange;
+
+              bottom: -150px;
+              right: -10px;
+            }
+            .light:nth-child(3) {
+              --color1: yellowgreen;
+              --color2: skyblue;
+              --color3: indigo;
+              --color4: silver;
+
+              right: 30px;
+              bottom: -115px;
+            }
+          }
+          &:nth-child(4) {
+            border-width: 0 120px 180px 120px;
+            bottom: 20px;
+            z-index: 1;
+
+            .light:nth-child(1) {
+              --color1: maroon;
+              --color2: gold;
+              --color3: aquamarine;
+              --color4: beige;
+
+              left: 40px;
+              bottom: -150px;
+            }
+            .light:nth-child(2) {
+              --color1: fuchsia;
+              --color2: limegreen;
+              --color3: royalblue;
+              --color4: blue;
+
+              right: 40px;
+              bottom: -150px;
+            }
+            .light:nth-child(3) {
+              --color1: yellow;
+              --color2: orange;
+              --color3: red;
+              --color4: green;
+
+              left: -5px;
+              bottom: -170px;
+            }
+          }
+        }
+
+        .trunk {
+          width: 40px;
+          height: 50px;
+          background-color: #8b4513;
+          bottom: 0;
+          z-index: -1;
+        }
+      }
+    }
+
+    /*================ CARD INSIDE ================*/
+    .card-inside {
+      width: var(--card-width);
+      height: var(--card-height);
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 35px 20px 10px;
+      text-align: center;
+      color: var(--color-white);
+      border: var(--card-border);
+      background-color: var(--color-red);
+      letter-spacing: 1px;
+      text-shadow: 0px 2px 4px rgba(206,89,55,0.8);
+      z-index: -1;
+
+      .card-inside__title {
+        font-size: 30px;
+        margin-bottom: 25px;
+      }
+      .card-inside__text {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+      .card-inside__text-botton {
+        font-size: 18px;
+
+      }
+    }
+  }
+}
+
+/*================ SNOW EFFECT ================*/
+.snow-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  .initial-snow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .snow {
+      position: absolute;
+      top: -10vh;
+      font-size: 40px;
+      color: var(--color-white);
+      pointer-events: none;
+
+      &:nth-child(2n) {
+        filter: blur(1px);
+        font-size: 40px;
+      }
+      &:nth-child(6n) {
+        filter: blur(2px);
+        font-size: 30px;
+      }
+      &:nth-child(10n) {
+        filter: blur(5px);
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+/*================ ANIMACIONES ================*/
+@keyframes changeColor {
+  0% {
+    background-color: var(--color1);
+    box-shadow: 0px 0px 5px var(--color1);
+  }
+  24% {
+    background-color: var(--color3);
+    box-shadow: 0px 0px 5px var(--color3);
+  }
+  25% {
+    background-color: var(--color2);
+    box-shadow: 0px 0px 5px var(--color2);
+  }
+  49% {
+    background-color: var(--color4);
+    box-shadow: 0px 0px 5px var(--color4);
+  }
+  50% {
+    background-color: var(--color3);
+    box-shadow: 0px 0px 5px var(--color3);
+  }
+  74% {
+    background-color: var(--color1);
+    box-shadow: 0px 0px 5px var(--color1);
+  }
+  75% {
+    background-color: var(--color4);
+    box-shadow: 0px 0px 5px var(--color4);
+  }
+  100% {
+    background-color: var(--color2);
+    box-shadow: 0px 0px 5px var(--color2);
+  }
+}
+
+@keyframes starGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 5px rgba(255, 215, 0, 0.5);
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0.8);
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(var(--left-ini), 0, 0);
+  }
+
+  100% {
+    transform: translate3d(var(--left-end), 110vh, 0);
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/santaclaus.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Mountains+of+Christmas:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="card-wrapper">
+      <div class="card">
+        <label for="open" class="open"></label>
+        <input type="checkbox" name="open" id="open" aria-label="Card" />
+        <div class="card-front">
+          <h1>Merry Christmas</h1>
+        </div>
+
+        <div class="card-front_back">
+          <div class="leaves">
+            <img
+              src="./christmas-leaves.png"
+              alt="Leaves"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="tree">
+            <div class="star"></div>
+            <div class="tree-piece">
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+            </div>
+            <div class="tree-piece">
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+            </div>
+            <div class="tree-piece">
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+            </div>
+            <div class="trunk"></div>
+          </div>
+        </div>
+
+        <div class="card-inside">
+          <h2 class="card-inside__title">Feliz Navidad y Año Nuevo</h2>
+          <p class="card-inside__text">
+            La Navidad es realmente mágica... Acabo de ver todo mi dinero
+            desaparecer
+          </p>
+          <p class="card-inside__text-bottom">¡Que tengas una feliz navidad y un prospero año nuevo!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="snow-container">
+      <div class="initial-snow"></div>
+    </div>
+
+    <script type="module" src="/app/main.js"></script>
+  </body>
+</html>
