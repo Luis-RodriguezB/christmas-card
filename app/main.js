@@ -1,18 +1,25 @@
-const CHRISTMAS_AUDIO = document.getElementById('christmas-audio');
+const OPEN_LABEL = document.getElementById('open-label');
 const VOLUME_BUTTON = document.getElementById('volume-button');
+const CHRISTMAS_AUDIO = document.getElementById('christmas-audio');
 
 window.onload = function () {
   loadSnow();
   CHRISTMAS_AUDIO.volume = 0.5;
-
-  if (CHRISTMAS_AUDIO.muted) {
-    VOLUME_BUTTON.querySelector('.off-icon').classList.add('active');
-    VOLUME_BUTTON.querySelector('.on-icon').classList.remove('active');
-  } else {
-    VOLUME_BUTTON.querySelector('.on-icon').classList.add('active');
-    VOLUME_BUTTON.querySelector('.off-icon').classList.remove('active');
-  }
+  CHRISTMAS_AUDIO.muted = true;
+  CHRISTMAS_AUDIO.pause();
 };
+
+OPEN_LABEL.addEventListener('click', () => {
+  if (CHRISTMAS_AUDIO.paused) {
+    VOLUME_BUTTON.querySelector('.on-icon').classList.add('active');
+    CHRISTMAS_AUDIO.muted = false;
+    CHRISTMAS_AUDIO.play().catch((error) => {
+      console.log('Error: ', error);
+      VOLUME_BUTTON.querySelector('.on-icon').classList.remove('active');
+      CHRISTMAS_AUDIO.muted = true;
+    });
+  }
+});
 
 VOLUME_BUTTON.addEventListener('click', () => {
   if (CHRISTMAS_AUDIO.muted) {
