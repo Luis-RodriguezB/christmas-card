@@ -38,7 +38,7 @@ html {
 
 body {
   margin: 0;
-  background-image: url('../christmas-bg.jpg');
+  background-image: url('../assets/christmas-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -97,7 +97,7 @@ body {
       transform-origin: left;
       transition: .3s;
       overflow: hidden;
-      background: url('../bg-card.png') no-repeat center var(--color-red);
+      background: url('../assets/bg-card.png') no-repeat center var(--color-red);
       background-size: cover;
 
       h1 {
@@ -323,6 +323,36 @@ body {
       .card-inside__text-botton {
         font-size: 18px;
 
+      }
+    }
+  }
+}
+
+.audio-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+
+  .volume-button {
+    cursor: pointer;
+    color: var(--color-white);
+    background: transparent;
+    border: none;
+    outline: none;
+    
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    span {
+      display: none;
+      opacity: 0;
+
+      &.active {
+        display: inline;
+        opacity: 1;
       }
     }
   }
